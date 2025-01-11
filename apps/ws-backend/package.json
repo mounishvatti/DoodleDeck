@@ -9,9 +9,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@repo/typescript-config": "workspace:*",
     "@types/express": "^5.0.0",
-    "express": "^4.21.2"
+    "@types/ws": "^8.5.13",
+    "express": "^4.21.2",
+    "ws": "^8.18.0"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,7 @@
   "type": "commonjs",
   "description": "",
   "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
     "typescript": "^5.7.3"
   }
 }
