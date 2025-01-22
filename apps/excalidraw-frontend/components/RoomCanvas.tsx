@@ -7,7 +7,11 @@ import { Canvas } from "./Canvas";
 
 export function RoomCanvas({roomId}: {roomId: string}) {
     const [socket, setSocket] = useState<WebSocket | null>(null);
-    const tokenVal = localStorage.getItem('token');
+    let tokenVal = null;
+
+    if (typeof window !== "undefined") {
+        tokenVal = window.localStorage.getItem("token");
+    }
     useEffect(() => {
         const ws = new WebSocket(`${WS_URL}?token=${tokenVal}`);
 
