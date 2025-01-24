@@ -81,10 +81,9 @@ app.post("/signin", async (req, res) => {
         `token=${token}; HttpOnly; Secure; Path=/; SameSite=Strict`,
     );
 
-    localStorage.setItem("userId", user.id);
-    localStorage.setItem("token", token);
-
-    res.json({
+    res.status(200).json({
+        username: user.name,
+        userId: user.id,
         token
     })
 })

@@ -2,11 +2,13 @@
 import { PencilRuler } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Link from "next/link";
+import axios from "axios";
 import { toast } from "react-toastify";
 export default function SigninPage() {
     const router = useRouter();
     const [formData, setFormData] = useState({
-        roomId: "",
+        name: "",
     });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -14,12 +16,17 @@ export default function SigninPage() {
         setFormData((prev) => ({ ...prev, [id]: value }));
     };
 
-    const joinRoom = async (e: React.FormEvent<HTMLFormElement>) => {
+    const createRoom = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (formData.roomId) {
+        if (formData.name) {
             try {
-                router.push("/canvas/"+formData.roomId);
-                toast.success("Joined the room successfully");
+                const data = {
+                    name: formData.name,
+                };
+                const response = await axios.post("/room", data);
+                const roomId = response.data.roomId;
+                toast.success("Room created successfully");
+                router.push("/canvas/"+roomId);
             } catch (error) {
                 console.log(error);
                 toast.error("Something went wrong");
@@ -41,28 +48,25 @@ export default function SigninPage() {
                     <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
                         <div className="text-center">
                             <h1 className="text-2xl font-bold text-gray-800">
-                                Join a room and collaborate
+                                Create a room and collaborate
                             </h1>
                         </div>
-                        <div className="text-center mt-1">
-                            <p className="text-sm text-gray-500 font-light">(Ask your friend to share the room ID)</p>
-                        </div>
-                        <form className="mt-6" onSubmit={joinRoom}>
+                        <form className="mt-6" onSubmit={createRoom}>
                             <div className="mb-4">
                                 <label
-                                    htmlFor="roomId"
-                                    className="block text-md font-medium text-gray-700"
+                                    htmlFor="name"
+                                    className="block text-sm font-medium text-gray-700"
                                 >
-                                    Enter room ID
+                                    Please enter your name
                                 </label>
                                 <input
                                     type="text"
-                                    id="roomId"
-                                    name="roomId"
-                                    value={formData.roomId}
+                                    id="name"
+                                    name="name"
+                                    value={formData.name}
                                     onChange={handleInputChange}
                                     className="mt-1 block w-full px-3 py-2 border text-zinc-800 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                    placeholder="1234"
+                                    placeholder="Harkirat"
                                 />
                             </div>
                             <div>
@@ -70,11 +74,11 @@ export default function SigninPage() {
                                     type="submit"
                                     className="w-full py-2 px-4 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none sm:text-sm font-medium"
                                 >
-                                    Join room
+                                    Create room
                                 </button>
                             </div>
                             <div className="text-center mt-4">
-                                <p className="text-zinc-700">Want to create a room? <a className="underline" href="/create-room">Create room</a></p>
+                                <p className="text-zinc-700">Want to join a room? <a className="underline" href="/join-room">Join room</a></p>
                             </div>
                         </form>
                     </div>

@@ -10,6 +10,7 @@ interface User {
   rooms: string[],
   userId: string
 }
+
 const users: User[] = [];
 
 function checkUser(token: string): string | null {
@@ -52,12 +53,13 @@ wss.on('connection', function connection(ws, request) {
   })
 
   ws.on('message', async function message(data) {
-    let parsedData; 
-    if (typeof data !== "string"){
+    let parsedData;
+    if (typeof data !== "string") {
       parsedData = JSON.parse(data.toString());
-    } else{
+    } else {
       parsedData = JSON.parse(data); // {type: "join-room", roomId: 1}
     }
+
     if (parsedData.type === "join_room") {
       const user = users.find(x => x.ws === ws);
       user?.rooms.push(parsedData.roomId);
@@ -72,7 +74,7 @@ wss.on('connection', function connection(ws, request) {
     }
 
     console.log("message received")
-    console.log(parsedData)
+    console.log(parsedData);
 
     if (parsedData.type === "chat") {
       const roomId = parsedData.roomId;
@@ -80,7 +82,7 @@ wss.on('connection', function connection(ws, request) {
 
       await prismaClient.chat.create({
         data: {
-          roomId,
+          roomId: Number(roomId),
           message,
           userId
         }
@@ -100,3 +102,4 @@ wss.on('connection', function connection(ws, request) {
   });
 
 });
+

@@ -4,16 +4,13 @@ import { WS_URL } from "@/config";
 import { initDraw } from "@/draw";
 import { useEffect, useRef, useState } from "react";
 import { Canvas } from "./Canvas";
+import { useSelector } from "react-redux";
 
 export function RoomCanvas({roomId}: {roomId: string}) {
     const [socket, setSocket] = useState<WebSocket | null>(null);
-    let tokenVal = null;
-
-    if (typeof window !== "undefined") {
-        tokenVal = window.localStorage.getItem("token");
-    }
+    const tokenVal = useSelector((state: {user: {token: string}}) => state.user.token);
     useEffect(() => {
-        const ws = new WebSocket(`${WS_URL}?token=${tokenVal}`);
+        const ws = new WebSocket(`${WS_URL}?token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyYmQ0MmIwOC04YzU5LTRmZjEtODUzNC00ODJhM2E0NzJmYjkiLCJpYXQiOjE3Mzc0NDA1NDh9.Dyve9vkreAbW1dMe0zIoEsvK_N3hUjHQC6yPVMB1POQ"`);
 
         ws.onopen = () => {
             setSocket(ws);

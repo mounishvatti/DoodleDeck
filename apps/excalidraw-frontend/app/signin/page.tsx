@@ -4,7 +4,15 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import {
+    setSession,
+    setToken,
+    setUserId,
+    setUsername,
+} from "@repo/store/userSlice";
 export default function SigninPage() {
+    const dispatch = useDispatch();
     const router = useRouter();
     const [formData, setFormData] = useState({
         email: "",
@@ -25,11 +33,20 @@ export default function SigninPage() {
                     password: formData.password,
                 };
                 const response = await axios.post("/signin", data);
-                toast.success("Logged in successfully");
-                router.push("/canvas");
+                if (response.status === 200) {
+                    const { username, userId, token } = response.data;
+                    dispatch(setUsername(username));
+                    dispatch(setUserId(userId));
+                    dispatch(setToken(token));
+                    dispatch(setSession(true));
+                    toast.success("Logged in successfully");
+                    router.push("/create-room");
+                } else if (response.status === 403) {
+                    toast.error("Invalid credentials");
+                }
             } catch (error) {
                 // TODO: Handle specific errors
-                toast.error("Invalid credentials");
+                toast.error("Something went wrong, please try again");
             }
         }
     };
@@ -76,7 +93,7 @@ export default function SigninPage() {
                                     name="email"
                                     value={formData.email}
                                     onChange={handleInputChange}
-                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    className="mt-1 block w-full px-3 py-2 text-zinc-900 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                     placeholder="Enter your email"
                                 />
                             </div>
@@ -93,7 +110,7 @@ export default function SigninPage() {
                                     name="password"
                                     value={formData.password}
                                     onChange={handleInputChange}
-                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    className="mt-1 block w-full px-3 py-2 border text-zinc-900 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                     placeholder="Enter your password"
                                 />
                             </div>
