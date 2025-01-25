@@ -5,6 +5,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import { HTTP_BACKEND } from "@/config";
 import {
     setSession,
     setToken,
@@ -32,13 +33,13 @@ export default function SigninPage() {
                     email: formData.email,
                     password: formData.password,
                 };
-                const response = await axios.post("/signin", data);
+                const response = await axios.post(`${HTTP_BACKEND}/signin`, data);
                 if (response.status === 200) {
-                    const { username, userId, token } = response.data;
-                    dispatch(setUsername(username));
-                    dispatch(setUserId(userId));
-                    dispatch(setToken(token));
+                    dispatch(setUsername(response.data.username));
+                    dispatch(setUserId(response.data.userId));
+                    dispatch(setToken(response.data.token));
                     dispatch(setSession(true));
+                    localStorage.setItem("token", response.data.token);
                     toast.success("Logged in successfully");
                     router.push("/create-room");
                 } else if (response.status === 403) {

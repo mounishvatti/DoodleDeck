@@ -85,7 +85,7 @@ app.post("/signin", async (req, res) => {
         username: user.name,
         userId: user.id,
         token
-    })
+    });
 })
 
 app.post("/room", middleware, async (req, res) => {
