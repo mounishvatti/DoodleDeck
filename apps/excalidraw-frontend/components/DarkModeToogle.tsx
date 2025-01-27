@@ -22,7 +22,7 @@ export function DarkModeToggle() {
   return (
     <button
       onClick={toggleDarkMode}
-      className="p-2 rounded-full text-gray-800 dark:text-gray-200"
+      className="p-2 rounded-full text-zinc-800 dark:text-zinc-200"
       aria-label="Toggle dark mode"
     >
       {!darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}

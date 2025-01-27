@@ -192,8 +192,8 @@ export function Canvas({
                         }}
                         className={`${
                             theme === "rgb(24, 24, 27)"
-                                ? "text-gray-300 bg-zinc-800"
-                                : "text-gray-600 bg-zinc-100"
+                                ? "text-zinc-300 bg-zinc-800"
+                                : "text-zinc-600 bg-zinc-100"
                         } p-2 rounded-md`}
                         title="Sidebar"
                     >
@@ -226,7 +226,7 @@ export function Canvas({
                                         className={`${
                                             theme === "rgb(24, 24, 27)"
                                                 ? "text-zinc-300"
-                                                : "text-zinc-50 bg-indigo-500/60 p-0.5 rounded-sm"
+                                                : "text-zinc-50 bg-yellow-500/60 p-0.5 rounded-sm"
                                         }`}
                                         onClick={()=> setTheme("rgb(255, 255, 255)")}
                                         title="Light"
@@ -236,7 +236,7 @@ export function Canvas({
                                     <button
                                         className={`${
                                             theme === "rgb(24, 24, 27)"
-                                                ? "text-zinc-300 bg-indigo-500/60 p-0.5 rounded-sm"
+                                                ? "text-zinc-300 bg-yellow-500/60 p-0.5 rounded-sm"
                                                 : "text-zinc-600"
                                         }`}
                                         onClick={()=> setTheme("rgb(24, 24, 27)")}
@@ -268,7 +268,7 @@ export function Canvas({
                     <button
                         onClick={handleUndo}
                         type="button"
-                        className="cursor-pointer hover:text-indigo-400 pl-2"
+                        className="cursor-pointer hover:text-yellow-400 pl-2"
                         title="Undo"
                     >
                         <Undo2 size={16}/>
@@ -277,7 +277,7 @@ export function Canvas({
                     <button
                         onClick={handleRedo}
                         type="button"
-                        className="cursor-pointer hover:text-indigo-300 pr-2"
+                        className="cursor-pointer hover:text-yellow-300 pr-2"
                         title="Redo"
                     >
                         <Redo2 size={16}/>

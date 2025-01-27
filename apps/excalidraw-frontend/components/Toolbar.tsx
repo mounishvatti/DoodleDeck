@@ -78,7 +78,7 @@ export function Topbar(
                         setSelectedTool("point");
                     }}
                     activated={selectedTool === "point"}
-                    icon={<MousePointer2 size={16} />}
+                    icon={<MousePointer2 size={20} />}
                     className="hidden sm:inline-block"
                     title="Pointer"
                 />
@@ -88,7 +88,7 @@ export function Topbar(
                         setSelectedTool("select");
                     }}
                     activated={selectedTool === "select"}
-                    icon={<SquareDashedMousePointer size={16} />}
+                    icon={<SquareDashedMousePointer size={20} />}
                     className="hidden sm:inline-block"
                     title="Select"
                 />
@@ -98,7 +98,7 @@ export function Topbar(
                         setSelectedTool("hand");
                     }}
                     activated={selectedTool === "hand"}
-                    icon={<Hand size={16} />}
+                    icon={<Hand size={20} />}
                     title="Grab"
                 />
 
@@ -107,7 +107,7 @@ export function Topbar(
                         setSelectedTool("rect");
                     }}
                     activated={selectedTool === "rect"}
-                    icon={<Square size={16} />}
+                    icon={<Square size={20} />}
                     title="Rectangle"
                 />
 
@@ -116,7 +116,7 @@ export function Topbar(
                         setSelectedTool("rhombus");
                     }}
                     activated={selectedTool === "rhombus"}
-                    icon={<Diamond size={16} />}
+                    icon={<Diamond size={20} />}
                     title="Rhombus"
                 />
 
@@ -125,7 +125,7 @@ export function Topbar(
                         setSelectedTool("circle");
                     }}
                     activated={selectedTool === "circle"}
-                    icon={<Circle size={16} />}
+                    icon={<Circle size={20} />}
                     title="Circle"
                 />
 
@@ -134,7 +134,7 @@ export function Topbar(
                         setSelectedTool("line");
                     }}
                     activated={selectedTool === "line"}
-                    icon={<Minus size={16} />}
+                    icon={<Minus size={20} />}
                     title="Line"
                 />
 
@@ -143,7 +143,7 @@ export function Topbar(
                         setSelectedTool("arrow");
                     }}
                     activated={selectedTool === "arrow"}
-                    icon={<MoveRight size={16} />}
+                    icon={<MoveRight size={20} />}
                     title="Arrow"
                 />
 
@@ -152,7 +152,7 @@ export function Topbar(
                         setSelectedTool("pencil");
                     }}
                     activated={selectedTool === "pencil"}
-                    icon={<Pencil size={16} />}
+                    icon={<Pencil size={20} />}
                     title="Pencil"
                 />
 
@@ -161,7 +161,7 @@ export function Topbar(
                         setSelectedTool("erase");
                     }}
                     activated={selectedTool === "erase"}
-                    icon={<Eraser size={16} />}
+                    icon={<Eraser size={20} />}
                     title="Erase"
                 />
 
@@ -170,19 +170,19 @@ export function Topbar(
                         setSelectedTool("text");
                     }}
                     activated={selectedTool === "text"}
-                    icon={<TypeOutline size={16} />}
+                    icon={<TypeOutline size={20} />}
                     className="hidden sm:inline-block"
                     title="Text"
                 />
 
-                <span className="opacity-50 text-gray-300">|</span>
+                <span className="opacity-50 text-zinc-300">|</span>
 
                 <IconButton
                     onClick={() => {
                         setSelectedTool("clear");
                     }}
                     activated={selectedTool === "clear"}
-                    icon={<Trash2 size={16} />}
+                    icon={<Trash2 size={20} />}
                     title="Clear canvas"
                 />
                 {/* Collaboration Button */}

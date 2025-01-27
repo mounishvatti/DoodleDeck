@@ -18,8 +18,8 @@ export function IconButton({
             // style={{
             //     fontSize: "1.5rem",
             // }}
-            className={`cursor-pointer rounded-lg p-1.5 hover:bg-gray ${className} ${
-                activated ? "text-indigo-100 bg-indigo-500/60" : "text-zinc-400"
+            className={`cursor-pointer rounded-lg p-1.5 hover:bg-zinc ${className} ${
+                activated ? "text-yellow-100 bg-yellow-500/60" : "text-zinc-400"
             }`}
             onClick={onClick}
             title={title}

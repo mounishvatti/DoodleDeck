@@ -13,7 +13,7 @@ export function ColorSelector({
     theme: Theme;
     setTheme: (s: Theme) => void;
     title?: string;
-}) { // Default color is Gray
+}) { // Default color is zinc
     const [showDropdown, setShowDropdown] = useState(false);
 
     const handleColorSelect = (color: Color) => {
