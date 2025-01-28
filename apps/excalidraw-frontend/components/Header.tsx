@@ -29,7 +29,7 @@ export default function Header() {
             </div>
           </div>
           <div className="ml-10 space-x-4 flex items-center">
-            <DarkModeToggle />
+            {/* <DarkModeToggle /> */}
             <Link href="/signin" className="inline-block bg-yellow-500 py-2 px-4 border border-transparent rounded-md text-base font-medium text-white hover:bg-opacity-75">
               Sign in
             </Link>
