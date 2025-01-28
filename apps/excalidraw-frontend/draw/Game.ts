@@ -46,8 +46,8 @@ export class Game {
     private panX: number = 0;
     private panY: number = 0;
     private selectedTool: Tool = "circle";
-    private selectedColor: Color = "#ffffff";
-    private theme: Theme = "rgb(24, 24, 27)";
+    private selectedColor: Color = "#7a7a7a";
+    private theme: Theme = "rgb(255, 255, 255)";
     private undoStack: Shape[][];
     private redoStack: Shape[][];
 
@@ -180,7 +180,7 @@ export class Game {
 
     async init() {
         this.existingShapes = await getExistingShapes(this.roomId);
-        console.log(this.existingShapes);
+        //console.log(this.existingShapes);
         this.clearCanvas();
     }
 
@@ -487,12 +487,6 @@ export class Game {
                 x2: e.clientX,
                 y2: e.clientY,
             };
-            // Add WebSocket send for line
-            this.socket.send(JSON.stringify({
-                type: "chat",
-                message: JSON.stringify({ shape }),
-                roomId: this.roomId,
-            }));
         } else if (this.selectedTool === "rhombus") {
             shape = {
                 type: "rhombus",
@@ -501,12 +495,6 @@ export class Game {
                 width: Math.abs(e.clientX - this.startX) / this.scale,
                 height: Math.abs(e.clientY - this.startY) / this.scale,
             };
-            // Add WebSocket send for rhombus
-            this.socket.send(JSON.stringify({
-                type: "chat",
-                message: JSON.stringify({ shape }),
-                roomId: this.roomId,
-            }));
         }
 
         if (!shape) {
@@ -515,13 +503,6 @@ export class Game {
 
         this.existingShapes.push(shape);
         this.pathErase = [];
-        console.log(
-            JSON.stringify({
-                type: "chat",
-                message: JSON.stringify({ shape }),
-                roomId: this.roomId,
-            }),
-        );
         this.socket.send(JSON.stringify({
             type: "chat",
             message: JSON.stringify({

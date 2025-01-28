@@ -83,8 +83,8 @@ export function Canvas({
     const [game, setGame] = useState<Game>();
     const [zoom, setZoom] = useState(75);
     const [selectedTool, setSelectedTool] = useState<Tool>("circle");
-    const [selectedColor, setSelectedColor] = useState<Color>("#ffffff");
-    const [theme, setTheme] = useState<Theme>("rgb(24, 24, 27)");
+    const [selectedColor, setSelectedColor] = useState<Color>("#7a7a7a");
+    const [theme, setTheme] = useState<Theme>("rgb(255, 255, 255)");
     const [sidebarClicked, setSidebarClicked] = useState(false);
     //const [strokeWidth, setStrokeWidth] = useState<number>(1);
 

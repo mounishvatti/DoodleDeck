@@ -41,7 +41,7 @@ export default function RootLayout({
             pauseOnFocusLoss
             draggable
             pauseOnHover
-            theme="system"
+            theme="light"
             limit={5}
           />
           {children}

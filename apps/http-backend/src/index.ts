@@ -135,7 +135,7 @@ app.get("/chats/:roomId", async (req, res) => {
             messages
         })
     } catch(e) {
-        console.log(e);
+        //console.log(e);
         res.json({
             messages: []
         })
