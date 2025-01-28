@@ -11,6 +11,12 @@ const app = express();
 app.use(express.json());
 app.use(cors())
 
+app.get("/", (req, res) => {
+    res.json({
+        message: "Hello from http-backend"
+    })
+});
+
 app.post("/signup", async (req, res) => {
 
     const parsedData = CreateUserSchema.safeParse(req.body);
