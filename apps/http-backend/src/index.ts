@@ -7,9 +7,26 @@ import { prismaClient } from "@repo/db/client";
 import bcrypt from "bcrypt";
 import cors from "cors";
 
+const allowedOrigins = [
+    "https://canvas.doodlelabs.space",
+    "https://doodlelabs.space",
+    "http://localhost:3000", // Include localhost for development
+  ];
+  
+  
 const app = express();
 app.use(express.json());
-app.use(cors())
+
+app.use(cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true, // Allow cookies if needed
+  }));
 
 app.get("/", (req, res) => {
     res.json({
