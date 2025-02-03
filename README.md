@@ -9,3 +9,4 @@
 - Clear canvas, Undo, Redo, Zoom, Panning.
 - Choose stroke color, canvas theme, etc.
    
+https://mounishvatti.me/blog/how-i-deployed-doodledeck
